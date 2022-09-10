@@ -27,8 +27,12 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Projectile")
 	float InitializeSpeed = 1200.f;
+	
 	UPROPERTY(EditAnywhere, Category = "Projectile")
 	float MaxSpeed = 1500.f;
+
+	UPROPERTY(EditAnywhere)
+	float DamageAmount = 50.f;
 	
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
