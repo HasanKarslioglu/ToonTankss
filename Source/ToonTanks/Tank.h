@@ -38,6 +38,7 @@ private:
 	class UCameraComponent* Camera;
 
 	APlayerController* TankPlayerController;
+	class AToonTankController* ToonTankController;
 };
 
 

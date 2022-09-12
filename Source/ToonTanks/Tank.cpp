@@ -1,6 +1,7 @@
 
 #include "Tank.h"
 
+#include "ToonTankController.h"
 #include "../../Plugins/Developer/RiderLink/Source/RD/thirdparty/clsocket/src/ActiveSocket.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -33,6 +34,8 @@ void ATank::BeginPlay()
 	
 	TankPlayerController = Cast<APlayerController>(GetController());
 	TankPlayerController->bShowMouseCursor = true;
+
+	ToonTankController = Cast<AToonTankController>(TankPlayerController);
 }
 
 //-------------------------Tick------------------------// 
@@ -51,6 +54,16 @@ void ATank::Tick(float DeltaTime)
 void ATank::HandleDestruction()
 {
 	Super::HandleDestruction();
+	if (GetTankPlayerController())
+	{
+		if (ToonTankController)
+		{
+			ToonTankController->SetPlayerEnabledState(false);
+		}
+		//DisableInput(GetTankPlayerController());	
+		//GetTankPlayerController()->bShowMouseCursor = false;
+	}
+	
 	SetActorHiddenInGame(true);
 	SetActorTickEnabled(false);
 }

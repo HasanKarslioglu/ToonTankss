@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -11,7 +10,7 @@ class TOONTANKS_API AToonTankController : public APlayerController
 {
 	GENERATED_BODY()
 
-protected:
-	virtual void BeginPlay() override;
+public:
+	void SetPlayerEnabledState(bool bPlayerEnabled);
 	
 };

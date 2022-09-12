@@ -12,10 +12,10 @@ class TOONTANKS_API AToonTanksGameMode : public AGameModeBase
 
 public:
 	void ActorDied(AActor* DeadActor);
-	
+
 protected:
 	virtual void BeginPlay() override;
 	
 private:
-	class ATank* Tank;
+		class AToonTankController* ToonTankPlayerController; 
 };
