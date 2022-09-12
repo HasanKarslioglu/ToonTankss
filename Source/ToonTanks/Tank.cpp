@@ -32,6 +32,7 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
 	
 	TankPlayerController = Cast<APlayerController>(GetController());
+	TankPlayerController->bShowMouseCursor = true;
 }
 
 //-------------------------Tick------------------------// 
