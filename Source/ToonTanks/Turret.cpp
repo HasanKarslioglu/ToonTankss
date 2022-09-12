@@ -20,6 +20,12 @@ void ATurret::Tick(float DeltaSeconds)
 	}
 }
 
+void ATurret::HandleDestruction()
+{
+	Super::HandleDestruction();
+	Destroy();
+}
+
 void ATurret::CheckFireCondition()
 {
 	if (TankRef)

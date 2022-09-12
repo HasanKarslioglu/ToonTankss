@@ -38,3 +38,15 @@ void ABasePawn::Fire()
 	auto ProjectTile= GetWorld()->SpawnActor<AProjectile>(ProjectileClass, ProjectTileSpawnPoint->GetComponentLocation(), ProjectTileSpawnPoint->GetComponentRotation());
 	ProjectTile->SetOwner(this);
 }
+
+void ABasePawn::HandleDestruction() 
+{
+
+	//TODO: Visual effect
+	//TODO: Sound
+
+}
+
+
+
+
