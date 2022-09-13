@@ -24,28 +24,30 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
 	PlayerInputComponent->BindAxis(TEXT("Turn"),this, &ATank::Turn);
-	PlayerInputComponent->BindAction(TEXT("fire"), IE_Pressed, this, &ATank::Fire);
+	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
 }
 
 //-------------------------Begin Play-----------------------// 
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	TankPlayerController = Cast<APlayerController>(GetController());
-	TankPlayerController->bShowMouseCursor = true;
 
-	ToonTankController = Cast<AToonTankController>(TankPlayerController);
+	ToonTankController = Cast<AToonTankController>(GetController());
+
+	if (ToonTankController)
+	{
+		ToonTankController->SetPlayerEnabledState(true);
+	}
 }
 
 //-------------------------Tick------------------------// 
 void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (TankPlayerController)
+	if (ToonTankController)
 	{
 		FHitResult HitResult;
-		TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility,false, HitResult);
+		ToonTankController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility,false, HitResult);
 		RotateTurret(HitResult.ImpactPoint);
 	}
 }
@@ -54,14 +56,9 @@ void ATank::Tick(float DeltaTime)
 void ATank::HandleDestruction()
 {
 	Super::HandleDestruction();
-	if (GetTankPlayerController())
+	if (ToonTankController)
 	{
-		if (ToonTankController)
-		{
-			ToonTankController->SetPlayerEnabledState(false);
-		}
-		//DisableInput(GetTankPlayerController());	
-		//GetTankPlayerController()->bShowMouseCursor = false;
+		ToonTankController->SetPlayerEnabledState(false);
 	}
 	
 	SetActorHiddenInGame(true);

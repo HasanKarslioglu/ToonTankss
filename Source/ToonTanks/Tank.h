@@ -14,7 +14,7 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	void HandleDestruction();
-	APlayerController* GetTankPlayerController() {return TankPlayerController;}; 
+	//APlayerController* GetTankPlayerController() {return ToonTankController;}; 
 	
 protected:
 
@@ -37,7 +37,6 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* Camera;
 
-	APlayerController* TankPlayerController;
 	class AToonTankController* ToonTankController;
 };
 
