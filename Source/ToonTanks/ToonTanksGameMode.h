@@ -13,9 +13,17 @@ class TOONTANKS_API AToonTanksGameMode : public AGameModeBase
 public:
 	void ActorDied(AActor* DeadActor);
 
+	UFUNCTION()
+	void HandleGameStart();
+	
 protected:
 	virtual void BeginPlay() override;
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartGame();
 	
 private:
-		class AToonTankController* ToonTankPlayerController; 
+	class AToonTankController* ToonTankPlayerController;
+	
+	UPROPERTY(EditAnywhere)
+	float StartPlayTime = 3.f;
 };

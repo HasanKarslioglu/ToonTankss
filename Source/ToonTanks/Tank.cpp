@@ -31,13 +31,8 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	ToonTankController = Cast<AToonTankController>(GetController());
-
-	if (ToonTankController)
-	{
-		ToonTankController->SetPlayerEnabledState(true);
-	}
 }
 
 //-------------------------Tick------------------------// 
@@ -76,6 +71,7 @@ void ATank::Turn(float Value)
 	
 	AddActorLocalRotation(DeltaRotation, true);
 }
+
 
 //-------------------------Moving-----------------------// 
 void ATank::Move(float Value)

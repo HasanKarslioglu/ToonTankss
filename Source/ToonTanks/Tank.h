@@ -14,7 +14,6 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	void HandleDestruction();
-	//APlayerController* GetTankPlayerController() {return ToonTankController;}; 
 	
 protected:
 
@@ -38,6 +37,7 @@ private:
 	class UCameraComponent* Camera;
 
 	class AToonTankController* ToonTankController;
+
 };
 
 
