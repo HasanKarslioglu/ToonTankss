@@ -39,14 +39,14 @@ void AProjectile::Tick(float DeltaTime)
 void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	FVector NormalImpulse, const FHitResult& Hit)
 {
-	auto MyOwner = GetOwner();
+	AActor* MyOwner = GetOwner();
 	if(MyOwner == nullptr)
 	{
 		Destroy();
 		return;
 	};
-	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
-	auto DamageTypeClass = UDamageType::StaticClass();
+	AController* MyOwnerInstigator = MyOwner->GetInstigatorController();
+	UClass* DamageTypeClass = UDamageType::StaticClass();
 	
 	if (OtherActor && OtherActor != this && OtherActor != MyOwner)
 	{

@@ -34,14 +34,15 @@ void ATurret::HandleDestruction()
 
 void ATurret::CheckFireCondition()
 {
-	if (TankRef)
+	if (TankRef == nullptr)
 	{
-		float distance = FVector::Dist(GetActorLocation(), TankRef->GetActorLocation());
-		if (distance <= FireDistance)
-		{
-			Fire();
-		}
+		return;
 	}
+	if (IsInFireRange() && TankRef->bAlive)
+	{
+		Fire();
+	}
+	
 }
 
 bool ATurret::IsInFireRange()

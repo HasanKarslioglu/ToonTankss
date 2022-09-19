@@ -14,6 +14,7 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	void HandleDestruction();
+	bool bAlive = true;
 	
 protected:
 
