@@ -36,15 +36,17 @@ void ABasePawn::RotateTurret(FVector LookAtTarget)
 void ABasePawn::Fire()
 {
 	auto ProjectTile= GetWorld()->SpawnActor<AProjectile>(ProjectileClass, ProjectTileSpawnPoint->GetComponentLocation(), ProjectTileSpawnPoint->GetComponentRotation());
+	if (DeadSound)
+		UGameplayStatics::PlaySoundAtLocation(this, DeadSound, GetActorLocation(), GetActorRotation());
 	ProjectTile->SetOwner(this);
 }
 
 void ABasePawn::HandleDestruction() 
 {
-
-	//TODO: Visual effect
-	//TODO: Sound
-
+	if (DeadParticle )
+		UGameplayStatics::SpawnEmitterAtLocation(this, DeadParticle, GetActorLocation());
+	if (DeadSound)
+		UGameplayStatics::PlaySoundAtLocation(this, DeadSound, GetActorLocation(), GetActorRotation(),1 ,2);
 }
 
 

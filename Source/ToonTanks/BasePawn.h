@@ -30,4 +30,10 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class AProjectile> ProjectileClass;
+
+	UPROPERTY(EditAnywhere)
+	UParticleSystem* DeadParticle;
+
+	UPROPERTY(EditAnywhere)
+	class USoundBase* DeadSound;
 };

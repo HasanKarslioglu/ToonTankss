@@ -38,6 +38,7 @@ private:
 
 	class AToonTankController* ToonTankController;
 
+	class AToonTanksGameMode* ToonTanksGameMode;
 };
 
 

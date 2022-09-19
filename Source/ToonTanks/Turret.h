@@ -29,5 +29,7 @@ private:
 	float FireRate = 2.f;
 	void CheckFireCondition();
 	bool IsInFireRange();
+
+	class AToonTanksGameMode* ToonTanksGameMode;
 };
 

@@ -2,6 +2,7 @@
 #include "Tank.h"
 
 #include "ToonTankController.h"
+#include "ToonTanksGameMode.h"
 #include "../../Plugins/Developer/RiderLink/Source/RD/thirdparty/clsocket/src/ActiveSocket.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -33,6 +34,7 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
 	
 	ToonTankController = Cast<AToonTankController>(GetController());
+	ToonTanksGameMode = Cast<AToonTanksGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 }
 
 //-------------------------Tick------------------------// 
@@ -58,6 +60,11 @@ void ATank::HandleDestruction()
 	
 	SetActorHiddenInGame(true);
 	SetActorTickEnabled(false);
+
+	if (ToonTanksGameMode)
+	{
+		ToonTanksGameMode->GameOver(false);
+	}
 }
 
 //-------------------------Turning-----------------------// 

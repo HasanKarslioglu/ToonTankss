@@ -2,12 +2,14 @@
 #include "Turret.h"
 #include "Kismet/GameplayStatics.h"
 #include "Tank.h"
+#include "ToonTanksGameMode.h"
 
 void ATurret::BeginPlay()
 {
 	Super::BeginPlay();
 	TankRef = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
 	GetWorldTimerManager().SetTimer(TH_FireRate, this, &ATurret::CheckFireCondition, FireRate, true);
+	ToonTanksGameMode = Cast<AToonTanksGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 }
 
 void ATurret::Tick(float DeltaSeconds)
@@ -23,6 +25,10 @@ void ATurret::Tick(float DeltaSeconds)
 void ATurret::HandleDestruction()
 {
 	Super::HandleDestruction();
+	if (ToonTanksGameMode)
+	{
+		ToonTanksGameMode->RemainTower -= 1; 
+	}
 	Destroy();
 }
 

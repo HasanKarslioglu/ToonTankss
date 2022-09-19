@@ -16,10 +16,18 @@ public:
 	UFUNCTION()
 	void HandleGameStart();
 	
+	UFUNCTION(BlueprintImplementableEvent)
+	void GameOver(bool GameWinLose);
+
+	int32 RemainTower = 0;
+	int32 GetTowerCount();
+	
 protected:
 	virtual void BeginPlay() override;
+	
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartGame();
+	
 	
 private:
 	class AToonTankController* ToonTankPlayerController;
