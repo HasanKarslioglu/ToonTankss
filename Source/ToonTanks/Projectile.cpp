@@ -27,7 +27,7 @@ void AProjectile::BeginPlay()
 	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 
 	if (LaunchSound)
-		UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation(), GetActorRotation(), 1, 0.5);
+		UGameplayStatics::PlaySoundAtLocation(this, LaunchSound, GetActorLocation(), GetActorRotation(), 1, 0.9);
 }
 
 void AProjectile::Tick(float DeltaTime)
@@ -52,14 +52,12 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	{
 		UGameplayStatics::ApplyDamage(OtherActor, DamageAmount, MyOwnerInstigator, this, DamageTypeClass);
 		if (HitParticles)
-		{
 			UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), GetActorRotation());
-		}
-	}
-	if (HitSound)
-	{
-		UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation(), GetActorRotation(), 1, 0.5);
-	}
+		if (HitSound)
+			UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation(), GetActorRotation(), 1.2, 0.15);
+		if(HitCameraShake)
+			GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(HitCameraShake);
+	}	
 	Destroy();
 }
 

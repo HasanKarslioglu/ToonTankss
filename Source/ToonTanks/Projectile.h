@@ -51,6 +51,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	USoundBase* HitSound;
 	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UCameraShakeBase> HitCameraShake;
 };
 
 
